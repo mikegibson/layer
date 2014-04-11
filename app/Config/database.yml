@@ -2,7 +2,7 @@ connections:
   default:
     driver: mysql
     host: localhost
-    database: eloquent
+    database: layer
     username: root
     password:
     charset: utf8

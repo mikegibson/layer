@@ -1,26 +1,14 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: Install Yum packages
+- name: Install some core packages
   yum: name={{ item }} state=present
   with_items:
+   - git
+   - libsemanage-python
+   - libselinux-python
    - ntp
-   - nodejs
-   - npm
-   - rubygems
-
-- name: Install Node packages
-  npm: name={{ item }} global=yes
-  with_items:
-   - uglify-js
-
-- name: Install Ruby packages
-  gem: name={{ item }} state=present
-  with_items:
-   - chunky_png
-   - fssm
-   - sass
-   - compass
+   - nano
 
 - name: Configure ntp file
   template: src=ntp.conf.j2 dest=/etc/ntp.conf

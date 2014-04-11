@@ -1,0 +1,9 @@
+connections:
+  default:
+    driver: mysql
+    host: localhost
+    database: eloquent
+    username: root
+    password:
+    charset: utf8
+    collation: utf8_unicode_ci

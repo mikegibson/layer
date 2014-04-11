@@ -1,0 +1,37 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install Yum packages
+  yum: name={{ item }} state=present
+  with_items:
+   - ntp
+   - nodejs
+   - npm
+   - rubygems
+
+- name: Install Node packages
+  npm: name={{ item }} global=yes
+  with_items:
+   - uglify-js
+
+- name: Install Ruby packages
+  gem: name={{ item }} state=present
+  with_items:
+   - chunky_png
+   - fssm
+   - sass
+   - compass
+
+- name: Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntpd state=started enabled=true
+  tags: ntp
+
+- name: test to see if selinux is running
+  command: getenforce
+  register: sestatus
+  changed_when: false

@@ -1,21 +1,21 @@
 {
-    "name": "mikegibson/layer",
-    "description": "Layer CMS Framework",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Mike Gibson",
-            "homepage": "https://twitter.com/dev_mike"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.4",
-        "mikegibson/layer-core": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app"
-        }
-    }
+	"name": "mikegibson/layer",
+	"description": "Layer CMS Framework",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mike Gibson",
+			"homepage": "https://twitter.com/dev_mike"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.4",
+		"mikegibson/layer-core": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app"
+		}
+	}
 }

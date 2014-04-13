@@ -15,44 +15,44 @@ use Silex\Application;
  */
 class PagesPlugin extends Plugin {
 
-    protected $name = 'pages';
+	protected $name = 'pages';
 
-    public function register() {
+	public function register() {
 
-        $app = $this->app;
+		$app = $this->app;
 
-        $app['pages.controllers'] = $app->share(function () use ($app) {
+		$app['pages.controllers'] = $app->share(function () use ($app) {
 
-            $pages = $app['controllers_factory'];
+			$pages = $app['controllers_factory'];
 
-            $pages->get('/{record}', 'pages.controllers.pages_controller:dispatch')
-                ->value('action', 'view')
-                ->convert('record', function ($page) use ($app) {
+			$pages->get('/{record}', 'pages.controllers.pages_controller:dispatch')
+				->value('action', 'view')
+				->convert('record', function ($page) use ($app) {
 
-                    $query = $app['data.content/pages']->query()->where('slug', $page);
+					$query = $app['data.content/pages']->query()->where('slug', $page);
 
-                    if (!$record = $query->first()) {
-                        $app->abort(404);
-                    }
+					if (!$record = $query->first()) {
+						$app->abort(404);
+					}
 
-                    return $record;
+					return $record;
 
-                });
+				});
 
-            return $pages;
+			return $pages;
 
-        });
+		});
 
-        $app['pages.controllers.pages_controller'] = $app->share(function () use ($app) {
+		$app['pages.controllers.pages_controller'] = $app->share(function () use ($app) {
 
-            return new PagesController($app);
+			return new PagesController($app);
 
-        });
+		});
 
-    }
+	}
 
-    public function boot() {
-        $this->app['data']->load(new PageType($this->app));
-    }
+	public function boot() {
+		$this->app['data']->load(new PageType($this->app));
+	}
 
 }

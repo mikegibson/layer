@@ -53,7 +53,6 @@ if($app->config('debug')) {
  * Load all required plugins
  */
 $app['plugins']->load([
-    'Layer\Data',
     'Layer\Admin',
     'App\Plugin\Pages'
 ]);

@@ -17,8 +17,6 @@ class PagesPlugin extends Plugin {
 
     protected $name = 'pages';
 
-    protected $depends = ['data'];
-
     public function register() {
 
         $app = $this->app;

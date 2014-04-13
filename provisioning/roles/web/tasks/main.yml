@@ -39,6 +39,7 @@
   npm: name={{ item }} global=yes
   with_items:
    - uglify-js
+   - uglifycss
 
 # @todo: Can't get the gem module to work properly!
 - name: Install Ruby packages
@@ -82,9 +83,3 @@
   shell:
     curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer
     creates=/usr/local/bin/composer
-
-- name: Composer install app
-  command: chdir=/vagrant composer install --prefer-source --dev creates=/vagrant/composer.lock
-
-- name: Composer update
-  command: chdir=/vagrant composer update

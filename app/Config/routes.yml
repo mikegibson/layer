@@ -1,2 +1,0 @@
-mount:
-  '/admin': admin.controllers

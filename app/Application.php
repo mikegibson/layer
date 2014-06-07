@@ -14,7 +14,7 @@ class Application extends \Layer\Application {
 		$this['plugins']->load([
 			'Layer\Cms',
 			'Layer\Pages',
-			//'Layer\Users'
+			'Layer\Users'
 		]);
 
 		/**

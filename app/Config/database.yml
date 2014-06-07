@@ -1,9 +1,7 @@
-connections:
-  default:
-    driver: mysql
-    host: localhost
-    database: layer
-    username: root
-    password:
-    charset: utf8
-    collation: utf8_unicode_ci
+default:
+  driver: pdo_mysql
+  host: localhost
+  dbname: layer
+  user: root
+  password:
+  charset: utf8

@@ -8,6 +8,8 @@ class Application extends \Layer\Application {
 
 		parent::__construct();
 
+		$this['name'] = 'My App';
+
 		/**
 		 * Load all required plugins
 		 */
@@ -16,12 +18,6 @@ class Application extends \Layer\Application {
 			'Layer\Pages',
 			'Layer\Users'
 		]);
-
-		/**
-		 * Mount controllers
-		 */
-		$this->mount('/', $this['pages.controllers']);
-		$this->mount('/admin', $this['cms.controllers']);
 
 	}
 

@@ -8,6 +8,9 @@ class Application extends \Layer\Application {
 
 		parent::__construct();
 
+		/**
+		 * Set the app name
+		 */
 		$this['name'] = 'My App';
 
 		/**

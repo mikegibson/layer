@@ -1,0 +1,92 @@
+---
+# This playbook installs and configures the system to host the application
+
+- name: Install some core packages
+  apt: name={{ item }} state=present
+  with_items:
+   - bindfs
+   - git
+   - git-core
+   - python-pycurl
+   - ntp
+   - nano
+   - vim
+   - curl
+
+- name: Add apt repository
+  apt_repository: repo='ppa:ondrej/php5'
+
+- name: Install some core packages
+  apt: name={{ item }} state=present
+  with_items:
+   - mysql-server
+   - python2.7-mysqldb
+   - apache2
+   - libapache2-mod-php5
+   - php-pear
+   - php5-cli
+   - php5-mcrypt
+   - php5-mysql
+   - rubygems
+   - nodejs
+   - npm
+   - memcached
+
+- name: Install Node packages
+  npm: name={{ item }} global=yes
+  with_items:
+   - uglify-js
+   - uglifycss
+
+- name: Install Ruby packages
+  gem: name={{ item }} state=present
+  with_items:
+   - chunky_png
+   - fssm
+   - sass
+   - compass
+
+- name: Create compass symlink
+  file: src=/usr/local/bin/compass dest=/usr/bin/compass state=link
+
+- name: Create Mysql configuration file
+  template: src=my.cnf.j2 dest=/etc/my.cnf
+  notify: restart mysql
+
+- name: Start Mysql Service
+  service: name=mysql state=started enabled=true
+
+- name: Create Application Database
+  mysql_db: name={{ dbname }} state=present
+
+- name: Create Application DB User
+  mysql_user: name={{ dbuser }} password={{ upassword }} priv=*.*:ALL host='%' state=present
+
+- name: Try to unmount an existing mount
+  command: umount /var/www/html removes=/var/www/html/Vagrantfile
+
+- name: Remove placeholder files
+  file: path=/var/www/html state=absent
+
+- name: Create directory
+  file: path=/var/www/html state=directory
+
+- name: Mount vagrant folder using bindfs
+  command: bindfs -u www-data -g www-data -p u=rwX:g=rD:o=rD /vagrant /var/www/html creates=/var/www/html/Vagrantfile
+
+- file: src=/etc/apache2/mods-available/rewrite.load dest=/etc/apache2/mods-enabled/rewrite.load state=link
+
+- file: src=/etc/apache2/mods-available/headers.load dest=/etc/apache2/mods-enabled/headers.load state=link
+
+- file: path=/etc/apache2/conf.d state=directory
+
+- name: Create apache configuration file
+  template:
+    src: apache2.conf
+    dest: /etc/apache2/apache2.conf
+  notify: restart apache
+
+- name: Install composer
+  shell:
+    curl -sS https://getcomposer.org/installer | php && mv -f /home/vagrant/composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer

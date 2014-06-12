@@ -3,9 +3,6 @@
 
 - name: apply configuration to all nodes
   hosts: all
-#  user: root
 
   roles:
-    - common
-    - web
-    - db
+    - main

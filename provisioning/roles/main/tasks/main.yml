@@ -16,7 +16,7 @@
 - name: Add apt repository
   apt_repository: repo='ppa:ondrej/php5'
 
-- name: Install some core packages
+- name: Install some more packages
   apt: name={{ item }} state=present
   with_items:
    - mysql-server

@@ -6,7 +6,6 @@
   with_items:
    - bindfs
    - git
-   - git-core
    - python-pycurl
    - ntp
    - nano

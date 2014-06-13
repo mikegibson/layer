@@ -2,6 +2,10 @@
 
 namespace App;
 
+use Layer\Cms\CmsPlugin;
+use Layer\Pages\PagesPlugin;
+use Layer\Users\UsersPlugin;
+
 class Application extends \Layer\Application {
 
 	public function __construct() {
@@ -13,14 +17,10 @@ class Application extends \Layer\Application {
 		 */
 		$this['name'] = 'My App';
 
-		/**
-		 * Load all required plugins
-		 */
-		$this['plugins']->load([
-			'Layer\Cms',
-			'Layer\Pages',
-			'Layer\Users'
-		]);
+		$this
+			->register(new CmsPlugin())
+			->register(new PagesPlugin())
+			->register(new UsersPlugin());
 
 	}
 

@@ -17,6 +17,9 @@ class Application extends \Layer\Application {
 		 */
 		$this['name'] = 'My App';
 
+		/**
+		 * Register plugins
+		 */
 		$this
 			->register(new CmsPlugin())
 			->register(new PagesPlugin())

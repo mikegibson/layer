@@ -37,8 +37,9 @@
    - uglify-js
    - uglifycss
 
+# @todo: Can't get the gem module to work properly!
 - name: Install Ruby packages
-  gem: name={{ item }} state=present
+  command: gem install {{ item }} creates=/usr/local/bin/{{ item }}
   with_items:
    - chunky_png
    - fssm

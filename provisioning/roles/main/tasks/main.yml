@@ -32,12 +32,11 @@
    - memcached
 
 - name: Install Node packages
-  npm: name={{ item }} global=yes
+  command: npm install {{ item }} --global creates=/usr/local/lib/node_modules/{{ item }}
   with_items:
    - uglify-js
    - uglifycss
 
-# @todo: Can't get the gem module to work properly!
 - name: Install Ruby packages
   command: gem install {{ item }} creates=/usr/local/bin/{{ item }}
   with_items:
@@ -46,8 +45,13 @@
    - sass
    - compass
 
-- name: Create compass symlink
-  file: src=/usr/local/bin/compass dest=/usr/bin/compass state=link
+- name: Create symlinks
+  file: src=/usr/local/bin/{{ item }} dest=/usr/bin/{{ item }} state=link
+  with_items:
+    - uglifycss
+    - uglifyjs
+    - compass
+    - sass
 
 - name: Create Mysql configuration file
   template: src=my.cnf.j2 dest=/etc/my.cnf

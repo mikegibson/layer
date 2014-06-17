@@ -1,5 +1,21 @@
 {% extends 'layout/standard' %}
 
+{% block stylesheets %}
+
+	{{ parent() }}
+
+	<link rel="stylesheet" type="text/css" href="{{ asset_url('css_app') }}"/>
+
+{% endblock stylesheets %}
+
+{% block body %}
+
+	{% include '@cms/element/header' %}
+
+	{{ parent() }}
+
+{% endblock body %}
+
 {% block container %}
 
 	<header>

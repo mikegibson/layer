@@ -13,15 +13,17 @@ class Application extends \Layer\Application {
 
 		parent::__construct();
 
+		$app = $this;
+
 		/**
 		 * Set the app name
 		 */
-		$this['name'] = 'My App';
+		$app['name'] = 'My App';
 
 		/**
 		 * Register plugins
 		 */
-		$this
+		$app
 			->register(new CmsPlugin())
 			->register(new PagesPlugin())
 			->register(new BlogPlugin())

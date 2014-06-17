@@ -1,1 +1,31 @@
 {% extends 'layout/standard' %}
+
+{% block container %}
+
+	<header>
+
+		{% block header %}<h1>{{ app.name }}</h1>{% endblock %}
+
+	</header>
+
+	{{ flash() }}
+
+	<section id="main">
+
+		{% block main %}
+
+		{% block content %}{% endblock %}
+
+		{% endblock main %}
+
+	</section>
+
+	{% if block('footer') is not empty %}
+	<footer>
+
+		{% block footer %}{% endblock %}
+
+	</footer>
+	{% endif %}
+
+{% endblock container %}

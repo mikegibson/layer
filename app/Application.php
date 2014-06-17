@@ -27,7 +27,8 @@ class Application extends \Layer\Application {
 			->register(new CmsPlugin())
 			->register(new PagesPlugin())
 			->register(new BlogPlugin())
-			->register(new UsersPlugin());
+			->register(new UsersPlugin())
+		;
 
 		/**
 		 * Create assets

@@ -10,7 +10,9 @@
 
 {% block body %}
 
-	{% include '@cms/element/header' %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include '@cms/element/header' %}
+	{% endif %}
 
 	{{ parent() }}
 

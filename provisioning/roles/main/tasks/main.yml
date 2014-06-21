@@ -26,6 +26,8 @@
    - php5-cli
    - php5-mcrypt
    - php5-mysql
+   - php5-imagick
+   - php5-gd
    - rubygems
    - nodejs
    - npm

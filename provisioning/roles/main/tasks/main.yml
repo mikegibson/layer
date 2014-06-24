@@ -72,13 +72,16 @@
   command: umount /var/www/html removes=/var/www/html/Vagrantfile
 
 - name: Remove placeholder files
-  file: path=/var/www/html state=absent
+  command: rm -rf /var/www/html removes=/var/www/html/index.html
 
 - name: Create directory
   file: path=/var/www/html state=directory
 
-- name: Mount vagrant folder using bindfs
-  command: bindfs -u www-data -g www-data -p u=rwX:g=rD:o=rD /vagrant /var/www/html creates=/var/www/html/Vagrantfile
+- name: Create bindfs script
+  template: src=mount-bindfs.conf dest=/etc/init/mount-bindfs.conf
+
+- name: Emit vagrant-mounted event to trigger mount of vagrant share
+  command: initctl emit vagrant-mounted creates=/var/www/html/Vagrantfile
 
 - file: src=/etc/apache2/mods-available/rewrite.load dest=/etc/apache2/mods-enabled/rewrite.load state=link
 

@@ -18,7 +18,7 @@ class Application extends \Layer\Application {
 		/**
 		 * Set the app name
 		 */
-		$app['name'] = 'My App';
+		$app['name'] = 'Layer Skeleton App';
 
 		/**
 		 * Register plugins

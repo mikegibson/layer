@@ -1,49 +1,25 @@
-{% extends 'layout/standard' %}
+{% extends 'layout/frontend' %}
 
 {% block stylesheets %}
 
 	{{ parent() }}
 
-	<link rel="stylesheet" type="text/css" href="{{ asset_url('css_app') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset_url('css_app') }}" />
 
 {% endblock stylesheets %}
 
-{% block body %}
-
-	{% if is_granted('ROLE_ADMIN') %}
-		{% include '@cms/element/header' %}
-	{% endif %}
+{% block header %}
 
 	{{ parent() }}
 
-{% endblock body %}
+	<nav id="nav-main">
 
-{% block container %}
+		{% block nav_main %}
 
-	<header>
+			{{ list( app['app.navigation'] ) }}
 
-		{% block header %}<h1>{{ app.name }}</h1>{% endblock %}
+		{% endblock nav_main %}
 
-	</header>
+	</nav>
 
-	{{ flash() }}
-
-	<section id="main">
-
-		{% block main %}
-
-		{% block content %}{% endblock %}
-
-		{% endblock main %}
-
-	</section>
-
-	{% if block('footer') is not empty %}
-	<footer>
-
-		{% block footer %}{% endblock %}
-
-	</footer>
-	{% endif %}
-
-{% endblock container %}
+{% endblock header %}

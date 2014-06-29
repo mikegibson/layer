@@ -1,9 +1,17 @@
-{% extends layout|default(default_layout) %}
+{% extends 'layout/panel' %}
 
-{% block content %}
+{% block panel_header %}
 
-	<h1>Home</h1>
+	<h1>Congratulations, {{ app.name }} is installed!</h1>
 
-	<p>This is the home page.</p>
+{% endblock panel_header %}
 
-{% endblock %}
+{% block panel_content %}
+
+	<p>This is the home page. You can customise this page by editing <code>app/Template/view/home.twig</code>.</p>
+
+	{% if not is_granted('ROLE_ADMIN') %}
+	<p>Then you can <a href="{{ url('app', {node: 'login'}) }}">login</a> and add some pages in the CMS.</p>
+	{% endif %}
+
+{% endblock panel_content %}

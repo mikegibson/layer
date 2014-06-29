@@ -32,7 +32,7 @@ class Application extends \Layer\Application {
 
 		parent::initializeAssets();
 
-		$this['assets.register_scss']('app', ['scss/app.scss', '@cms/scss/header.scss']);
+		$this['assets.register_scss']('app', ['scss/app.scss']);
 
 	}
 

@@ -26,20 +26,13 @@ class Application extends \Layer\Application {
 			->register(new BlogPlugin())
 		;
 
-		/**
-		 * Create assets
-		 */
-		$app[$app->assets['css_app'] = 'assets.css_app'] = $app->share(function() use($app) {
-			return $app['assetic.factory']->createAsset([
-				'scss/app.scss',
-				'@cms/scss/cms_header.scss'
-			], [
-				'compass',
-				'?uglifycss'
-			], [
-				'output' => 'css/app.css'
-			]);
-		});
+	}
+
+	protected function initializeAssets() {
+
+		parent::initializeAssets();
+
+		$this['assets.register_scss']('app', ['scss/app.scss', '@cms/scss/header.scss']);
 
 	}
 

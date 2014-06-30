@@ -33,7 +33,7 @@ class Application extends \Sentient\Application {
 		/**
 		 * Set the app name
 		 */
-		$app['name'] = 'Sentient Skeleton App';
+		$app['name'] = 'Sentient';
 
 		/**
 		 * Register CSS assets

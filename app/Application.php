@@ -8,8 +8,27 @@ use Layer\Pages\PagesPlugin;
 class Application extends \Layer\Application {
 
 	/**
+	 * Register any plugins and service providers required for the app
+	 */
+	protected function registerServiceProviders() {
+
+		parent::registerServiceProviders();
+
+		$app = $this;
+
+		/**
+		 * Register plugins and service providers
+		 */
+		$app
+			->register(new PagesPlugin())
+			->register(new BlogPlugin())
+		;
+
+	}
+
+	/**
 	 * Initialize the app
-	 * Any custom services and configuration for the app should be initialized here
+	 * Set any custom properties and initialize any services or resources here
 	 */
 	protected function initialize() {
 
@@ -19,14 +38,6 @@ class Application extends \Layer\Application {
 		 * Set the app name
 		 */
 		$app['name'] = 'Layer Skeleton App';
-
-		/**
-		 * Register plugins and service providers
-		 */
-		$app
-			->register(new PagesPlugin())
-			->register(new BlogPlugin())
-		;
 
 		/**
 		 * Register CSS assets

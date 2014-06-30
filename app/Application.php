@@ -48,12 +48,15 @@ class Application extends \Layer\Application {
 	}
 
 	/**
-	 * Mount controllers for the app
+	 * Connect routes and mount controllers for the app here
 	 */
 	protected function connectRoutes() {
 
 		$app = $this;
 
+		/**
+		 * Mount the base app controller
+		 */
 		$app->mount('/', $app['app.controllers']);
 
 	}

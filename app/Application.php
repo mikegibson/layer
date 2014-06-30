@@ -8,7 +8,7 @@ use Layer\Pages\PagesPlugin;
 class Application extends \Layer\Application {
 
 	/**
-	 * Register any plugins and service providers required for the app
+	 * Register any additional plugins and service providers required for the app here
 	 */
 	protected function registerServiceProviders() {
 

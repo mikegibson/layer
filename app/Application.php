@@ -36,7 +36,7 @@ class Application extends \Layer\Application {
 		/**
 		 * Register javascript assets
 		 */
-		// $app['assets.register_scss']('app', ['scss/app.scss']);
+		// $app['assets.register_js']('app', ['js/app.js']);
 
 	}
 

@@ -29,6 +29,7 @@ class Application extends \Layer\Application {
 	/**
 	 * Initialize the app
 	 * Set any custom properties and initialize any services or resources here
+	 * This method is called just before all services are booted
 	 */
 	protected function initialize() {
 

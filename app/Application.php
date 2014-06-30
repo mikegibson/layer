@@ -50,7 +50,7 @@ class Application extends \Layer\Application {
 	/**
 	 * Mount controllers for the app
 	 */
-	protected function mountControllers() {
+	protected function connectRoutes() {
 
 		$app = $this;
 

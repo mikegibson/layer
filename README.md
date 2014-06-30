@@ -1,4 +1,4 @@
-Layer
+Sentient
 =====
 
-Layer CMS Framework base app
+Sentient CMS Framework base app

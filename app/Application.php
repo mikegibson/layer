@@ -47,4 +47,15 @@ class Application extends \Layer\Application {
 
 	}
 
+	/**
+	 * Mount controllers for the app
+	 */
+	protected function mountControllers() {
+
+		$app = $this;
+
+		$app->mount('/', $app['app.controllers']);
+
+	}
+
 }

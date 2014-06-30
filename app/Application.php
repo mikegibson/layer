@@ -7,9 +7,7 @@ use Layer\Pages\PagesPlugin;
 
 class Application extends \Layer\Application {
 
-	public function __construct() {
-
-		parent::__construct();
+	protected function initialize() {
 
 		$app = $this;
 
@@ -26,13 +24,7 @@ class Application extends \Layer\Application {
 			->register(new BlogPlugin())
 		;
 
-	}
-
-	protected function initializeAssets() {
-
-		parent::initializeAssets();
-
-		$this['assets.register_scss']('app', ['scss/app.scss']);
+		$app['assets.register_scss']('app', ['scss/app.scss']);
 
 	}
 

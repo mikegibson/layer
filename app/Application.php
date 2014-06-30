@@ -14,12 +14,7 @@ class Application extends \Layer\Application {
 
 		parent::registerServiceProviders();
 
-		$app = $this;
-
-		/**
-		 * Register plugins and service providers
-		 */
-		$app
+		$this
 			->register(new PagesPlugin())
 			->register(new BlogPlugin())
 		;

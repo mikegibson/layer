@@ -4,8 +4,9 @@ namespace App;
 
 use Sentient\Blog\BlogPlugin;
 use Sentient\Pages\PagesPlugin;
+use Sentient\Sentient;
 
-class Application extends \Sentient\Application {
+class Application extends Sentient {
 
 	/**
 	 * Register any additional plugins and service providers required for the app here

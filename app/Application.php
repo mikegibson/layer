@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Sentient\Application as Sentient;
 use Sentient\Blog\BlogPlugin;
 use Sentient\Pages\PagesPlugin;
-use Sentient\Sentient;
 
 class Application extends Sentient {
 

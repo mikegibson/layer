@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Layer\Blog\BlogPlugin;
-use Layer\Pages\PagesPlugin;
+use Sentient\Blog\BlogPlugin;
+use Sentient\Pages\PagesPlugin;
 
-class Application extends \Layer\Application {
+class Application extends \Sentient\Application {
 
 	/**
 	 * Register any additional plugins and service providers required for the app here
@@ -33,7 +33,7 @@ class Application extends \Layer\Application {
 		/**
 		 * Set the app name
 		 */
-		$app['name'] = 'Layer Skeleton App';
+		$app['name'] = 'Sentient Skeleton App';
 
 		/**
 		 * Register CSS assets

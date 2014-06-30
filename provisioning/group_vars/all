@@ -12,6 +12,6 @@ webroot_dir: public
 mysqlservice: mysqld
 mysql_port: 3306
 dbuser: root
-dbname: layer
+dbname: sentient
 upassword:
 

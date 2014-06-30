@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.sudo = true
     ansible.verbose = "v"
     ansible.groups = {
-      "main" => ["vagrant.layer"]
+      "main" => ["vagrant.sentient"]
     }
   end
 

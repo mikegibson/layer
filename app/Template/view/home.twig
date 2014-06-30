@@ -2,7 +2,7 @@
 
 {% block panel_header %}
 
-	<h1>Congratulations, {{ app.name }} is installed!</h1>
+	<h1>{{ app.name }} is installed!</h1>
 
 {% endblock panel_header %}
 
@@ -11,7 +11,7 @@
 	<p>This is the home page. You can customise this page by editing <code>app/Template/view/home.twig</code>.</p>
 
 	{% if not is_granted('ROLE_ADMIN') %}
-	<p>Then you can <a href="{{ url('app', {node: 'login'}) }}">login</a> and add some pages in the CMS.</p>
+	<p>Or you can <a href="{{ url('app', {node: 'login'}) }}">login</a> and add some pages in the CMS.</p>
 	{% endif %}
 
 {% endblock panel_content %}

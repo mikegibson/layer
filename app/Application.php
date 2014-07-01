@@ -48,18 +48,4 @@ class Application extends Sentient {
 
 	}
 
-	/**
-	 * Connect routes and mount controllers for the app here
-	 */
-	protected function connectRoutes() {
-
-		$app = $this;
-
-		/**
-		 * Mount the base app controller
-		 */
-		$app->mount('/', $app['app.controllers']);
-
-	}
-
 }

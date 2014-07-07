@@ -70,13 +70,26 @@ html, body, #container {
 	background:$white;
 	color:$black;
 	padding:1rem;
+	display:flex;
+	@include box-sizing(border-box);
 	.panel {
+		@include box-sizing('border-box');
+		position:relative;
+		overflow:hidden;
+		display: block;
+		width:auto;
 		> header {
-			padding:0.2rem 1rem;
+			padding:0.2rem 0;
 		}
 		> .content {
-			padding:0.4rem 1rem;
+			padding:0.4rem 0;
 		}
+	}
+	> section {
+		flex: 1;
+	}
+	> aside {
+		flex: 0.3;
 	}
 	h1 {
 		font-size:1.2rem;

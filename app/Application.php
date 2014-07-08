@@ -40,7 +40,7 @@ class Application extends Sentient {
 		 * Add the about action to the home node
 		 */
 		$app['home_node'] = $app->share($app->extend('home_node', function(ControllerNode $homeNode) use($app) {
-			$homeNode->wrapChildNode(new ControllerNode($app['about_action']));
+			$homeNode->wrapChild(new ControllerNode($app['about_action']));
 			return $homeNode;
 		}));
 

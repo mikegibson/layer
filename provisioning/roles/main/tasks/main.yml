@@ -102,3 +102,6 @@
   shell:
     curl -sS https://getcomposer.org/installer | php && mv -f /home/vagrant/composer.phar /usr/local/bin/composer
     creates=/usr/local/bin/composer
+
+- name: Composer install
+  command: composer install creates=/vagrant/composer.lock

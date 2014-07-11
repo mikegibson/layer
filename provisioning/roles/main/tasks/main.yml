@@ -13,14 +13,8 @@
    - vim
    - curl
 
-- name: Add apt repositories
-  apt_repository: repo={{ item }}
-  with_items:
-   - ppa:ondrej/php5
-   - ppa:webupd8team/java
-
-- name: Autoaccept license for Java
-  action: shell echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+- name: Add apt repository
+  apt_repository: repo='ppa:ondrej/php5'
 
 - name: Install some more packages
   apt: name={{ item }} state=present
@@ -36,9 +30,15 @@
    - php5-imagick
    - php5-gd
    - rubygems
+   - nodejs
+   - npm
    - memcached
-   - oracle-java7-installer
-   - oracle-java7-set-default
+
+- name: Install Node packages
+  command: npm install {{ item }} --global creates=/usr/local/lib/node_modules/{{ item }}
+  with_items:
+   - uglify-js
+   - uglifycss
 
 - name: Install Ruby packages
   command: gem install {{ item }} creates=/usr/local/bin/{{ item }}
@@ -51,6 +51,8 @@
 - name: Create symlinks
   file: src=/usr/local/bin/{{ item }} dest=/usr/bin/{{ item }} state=link
   with_items:
+    - uglifycss
+    - uglifyjs
     - compass
     - sass
 
@@ -81,6 +83,8 @@
 
 - name: Emit vagrant-mounted event to trigger mount of vagrant share
   command: initctl emit vagrant-mounted creates=/var/www/html/Vagrantfile
+
+- file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
 
 - file: src=/etc/apache2/mods-available/rewrite.load dest=/etc/apache2/mods-enabled/rewrite.load state=link
 

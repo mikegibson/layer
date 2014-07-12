@@ -5,7 +5,7 @@ This is the Skeleton App for [Sentient Content Management Framework](https://git
 
 Installation
 ------------
-The easiest installation method is to just boot the included Vagrant box. This will boot and provision the virtual machine, and download all Composer dependencies.
+The easiest way to install is to just boot the included Vagrant box. This will boot and provision the virtual machine, and download all Composer dependencies.
 
 1. Install [Vagrant](http://www.vagrantup.com/)
 2. Clone this repository into your project folder

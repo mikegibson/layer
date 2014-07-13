@@ -53,6 +53,8 @@ class Application extends Sentient {
 	 */
 	protected function initialize() {
 
+		parent::initialize();
+
 		/**
 		 * Register CSS assets
 		 */

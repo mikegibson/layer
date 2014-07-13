@@ -11,7 +11,8 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4",
-		"mikegibson/sentient": "dev-master"
+		"mikegibson/sentient": "dev-master",
+		"phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
 		"psr-4": {

@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Sentient\Action\SimpleAction;
 use Sentient\Application as Sentient;
 use Sentient\Blog\BlogPlugin;
-use Sentient\Node\ControllerNode;
+use Sentient\Node\ControllerNodeListNode;
+use Sentient\Node\ListNode;
 use Sentient\Pages\PagesPlugin;
 
 class Application extends Sentient {
@@ -17,6 +17,11 @@ class Application extends Sentient {
 		$app = $this;
 
 		/**
+		 * Set the app name
+		 */
+		$app['name'] = 'Sentient';
+
+		/**
 		 * Register additional plugins and service providers
 		 */
 		$app
@@ -25,35 +30,17 @@ class Application extends Sentient {
 		;
 
 		/**
-		 * Set the app name
+		 * Create the home route
 		 */
-		$app['name'] = 'Sentient';
+		$app->get('/', function() use($app) {
+			return $app['twig.view']->render('view/home');
+		})->bind('home');
 
 		/**
-		 * Create an "about" action for displaying the About page
+		 * Mount controllers from plugins
 		 */
-		$app['about_action'] = $app->share(function() {
-			return new SimpleAction('about', 'About', 'view/about');
-		});
-
-		/**
-		 * Add the about action to the home node
-		 */
-		$app['home_node'] = $app->share($app->extend('home_node', function(ControllerNode $homeNode) use($app) {
-			$homeNode->wrapChild(new ControllerNode($app['about_action']));
-			return $homeNode;
-		}));
-
-	}
-
-	/**
-	 * Initialize the app
-	 * Set any custom properties and initialize any services or resources here
-	 * This method is called just before all services are booted
-	 */
-	protected function initialize() {
-
-		parent::initialize();
+		$app->mount('/', $app['pages.controllers']);
+		$app->mount('/blog', $app['blog.controllers']);
 
 		/**
 		 * Register CSS assets
@@ -64,6 +51,19 @@ class Application extends Sentient {
 		 * Register javascript assets
 		 */
 		// $this['assets.register_js']('app', ['js/app.js']);
+
+		/**
+		 * Create the navigation structure
+		 */
+		$app['navigation'] = $app->share(function() use($app) {
+			$rootNode = new ListNode();
+			$rootNode->registerChild(new ListNode($rootNode, 'home', 'Home', $app['url_generator']->generate('home')));
+			$rootNode->adoptChildren(
+				new ControllerNodeListNode($app['pages.root_node'], 'pages', $app['url_generator'])
+			);
+			$rootNode->addChild('blog', 'Blog', $app['url_generator']->generate('blog'));
+			return $rootNode;
+		});
 
 	}
 
